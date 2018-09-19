@@ -1,4 +1,4 @@
-# my-knr-solutions
+# My KNR Solutions
 
 This repository contains my solutions to exercises within "The C Programming Language" (2nd Edition) by Kernighan and Ritchie.
 
