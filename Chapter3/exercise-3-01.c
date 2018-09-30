@@ -1,18 +1,18 @@
 #include <stdio.h>
 
-#define size 20
+#define SIZE 20
 
 int binsearch(int x, int v[], int n);
 
 int main(){
 
-	int v[size];
+	int v[SIZE];
 
-	for (int i = 0; i<size; ++i){
+	for (int i = 0; i<SIZE; ++i){
 		v[i]=i+5;
 	}
 
-	printf("\nANSWER: %d\n",binsearch(v[0]+2,v,size-1));
+	printf("\nANSWER: %d\n",binsearch(v[0]+2,v,SIZE-1));
 
 	return 0;
 }
