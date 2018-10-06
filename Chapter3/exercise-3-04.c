@@ -14,6 +14,10 @@ it, adding one, and checking back after the conversion was completed, then addin
 digit of the string (last digit of input int). This digit can never be 9 for the minimum value and break
 since (2^n)-1 is never 9. */
 
+//Note - for the next exercise I used the abs() function from stdlib.h as a more general technique, but I
+//kept this here because it's another way to do this exercise (and I think it may be more efficient for
+// this single case, though I'm not sure)
+
 int main(){
 
 	char s[SIZE];
