@@ -19,7 +19,11 @@ int main(){
 
 int strrindex(char s[], char t[]){
 
-	// Return the index of the last (rightmost) match of t in s.
+	/* Return the index of the last (rightmost) match of t in s.
+	Another way would be to get the length of s and t 
+	and then start from the right end. That would probably be
+	more efficient in the case of long strings where the rightmost match
+	was close(r) to the end. */
 
 	int i, j, k, match;
 	match=-1;
