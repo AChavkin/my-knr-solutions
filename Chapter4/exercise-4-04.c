@@ -68,7 +68,10 @@ void peek(void)
 
 void duplicate(void)
 {
-	if (sp > 0 && sp < MAXVAL) val[sp++] = val[sp-1];
+	if (sp > 0 && sp < MAXVAL) {
+		val[sp] = val[sp-1];
+		sp++;
+	}
 	/* decide which error to print based on the value of sp: */
 	else (sp) ? printf("Error: stack full. "
 		"Can't duplicate %g\n", val[sp-2]) : \
