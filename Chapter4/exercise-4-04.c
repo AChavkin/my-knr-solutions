@@ -39,7 +39,6 @@ int main()
 			default: printf("Error: unknown command\n"); break;
 		}
 	}
-	printf("%s\n", s);
 	return 0;
 }
 
@@ -106,8 +105,11 @@ int getop(char s[])
 	if (c == '-'){
 		if (isdigit(s[++i] = c = getch()))
 			while (isdigit(s[++i] = c = getch()))
-			;
-		else return '-';
+				;
+		else {
+			ungetch(c);
+			return '-';
+		}
 	}
 	if (isdigit(c))
 		while (isdigit(s[++i] = c = getch()))
