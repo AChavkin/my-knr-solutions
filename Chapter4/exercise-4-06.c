@@ -9,6 +9,7 @@
 #define BUFSIZE 100
 #define NUMBER '0'
 #define ALPHA '1'
+#define VAR '2'
 
 int getop(char s[]);
 double mathfunc(char s[]);
@@ -20,8 +21,10 @@ void swap(void);
 void clear(void);
 int getch(void);
 void ungetch(int c);
+void handlevar(int c);
 
 double recent = 0.0;
+double variables[26];
 
 int main()
 {
@@ -33,6 +36,7 @@ int main()
 		switch (type) {
 			case NUMBER: push(atof(s)); break;
 			case ALPHA: push(mathfunc(s)); break;
+			// case VAR: handlevar(s[0]); break;
 			case '+': push(pop() + pop()); break;
 			case '*': push(pop() * pop()); break;
 			case '-': op2 = pop(); push(pop() - op2); break;
@@ -163,7 +167,9 @@ int getop(char s[])
 		while (isalpha(s[++i] = c = getch()))
 			;
 		s[i] = '\0';
+		printf("strlen %lu\n", strlen(s));
 		if (c != EOF) ungetch(c);
+		if (strlen(s) == 1) return VAR;
 		return ALPHA;
 
 	}
