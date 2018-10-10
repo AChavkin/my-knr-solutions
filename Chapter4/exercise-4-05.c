@@ -40,7 +40,7 @@ int main()
 			case '%': op2 = pop(); 
 					  if(op2 != 0.0) push(fmod(pop(), op2));
 					  else printf("Error: zero divisor \n"); break;
-			case '\n': printf("RESULT: \n%.8g\n", pop()); break;
+			case '\n': printf("\t%.8g\n", pop()); break;
 			default: printf("Error: unknown command\n"); break;
 		}
 	}
@@ -74,6 +74,7 @@ double mathfunc(char s[])
 	else {
 		printf("Error: function not recognized.\n");
 		clear();
+		return 0.0;
 	}
 }
 
