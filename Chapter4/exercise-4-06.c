@@ -167,9 +167,8 @@ int getop(char s[])
 		while (isalpha(s[++i] = c = getch()))
 			;
 		s[i] = '\0';
-		printf("strlen %lu\n", strlen(s));
 		if (c != EOF) ungetch(c);
-		if (strlen(s) == 1) return VAR;
+		if (strlen(s) == 1 && 'a' <= s[0] && s[0] <= 'z') return VAR;
 		return ALPHA;
 
 	}
