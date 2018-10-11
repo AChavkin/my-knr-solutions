@@ -11,7 +11,6 @@
 #define NUMBER '0'
 #define ALPHA '1'
 #define GETVAR '2'
-#define SETVAR '3'
 
 int getop(char s[]);
 double mathfunc(char s[]);
@@ -23,8 +22,7 @@ void swap(void);
 void clear(void);
 int getch(void);
 void ungetch(int c);
-void getvar(int c);
-//void setvar(int c, double x);
+double getvar(int c);
 
 double recent = 0.0;
 double variables[NUMVARS];
@@ -35,8 +33,6 @@ int main()
 	int type;
 	double op2;
 	char s[MAXOP];
-	variables[1]=2.5;
-	status[1]=1;
 
 	for (type = 0; type < NUMVARS; type++) status[type] = 0;
 
@@ -44,8 +40,7 @@ int main()
 		switch (type) {
 			case NUMBER: push(atof(s)); break;
 			case ALPHA: push(mathfunc(s)); break;
-			case GETVAR: getvar(s[0]); break;
-			//case SETVAR: printf("Variable set to %g\n", pop());
+			case GETVAR: push(getvar(s[0])); break;
 			case '+': push(pop() + pop()); break;
 			case '*': push(pop() * pop()); break;
 			case '-': op2 = pop(); push(pop() - op2); break;
@@ -62,18 +57,12 @@ int main()
 	return 0;
 }
 
-void getvar(int c)
+double getvar(int c)
 {
-	if (status[c - 'a']) push(variables[c - 'a']);
-	else printf("Error: variable not set.");
+	if (status[c - 'a']) return variables[c - 'a'];
+	else printf("Error: variable not set.\n");
+	return 0.0;
 }
-
-/*void setvar(int c, double x){
-	printf("INVOKED");
-	variables[c-'a'] = x;
-	status[c-'a']=1;
-	push(x);
-}*/
 
 double mathfunc(char s[])
 {
@@ -187,13 +176,6 @@ int getop(char s[])
 		}
 	}
 	if (isalpha(c)){
-		//printf("%d CH1 \n%d CHARS\n", s[i+2], s[i+3]);
-		//if (s[i+1] == '='){
-		//	if (isdigit(s[i+2])){
-		//		setvar(c, s[i+2]);
-		//		return SETVAR;
-		//	}
-		//}
 		while (isalpha(s[++i] = c = getch()))
 			;
 		s[i] = '\0';
