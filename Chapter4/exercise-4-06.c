@@ -11,6 +11,7 @@
 #define NUMBER '0'
 #define ALPHA '1'
 #define GETVAR '2'
+#define SETVAR '3'
 
 int getop(char s[]);
 double mathfunc(char s[]);
@@ -23,10 +24,13 @@ void clear(void);
 int getch(void);
 void ungetch(int c);
 double getvar(int c);
+void setvar(int varkey, double varval);
 
-double recent = 0.0;
 double variables[NUMVARS];
 int status[NUMVARS];
+int varkey = 0;
+double varval = 0.0;
+double recent = 0.0;
 
 int main()
 {
@@ -41,6 +45,7 @@ int main()
 			case NUMBER: push(atof(s)); break;
 			case ALPHA: push(mathfunc(s)); break;
 			case GETVAR: push(getvar(s[0])); break;
+			case SETVAR: setvar(varkey, varval); break;
 			case '+': push(pop() + pop()); break;
 			case '*': push(pop() * pop()); break;
 			case '-': op2 = pop(); push(pop() - op2); break;
@@ -62,6 +67,13 @@ double getvar(int c)
 	if (status[c - 'a']) return variables[c - 'a'];
 	else printf("Error: variable not set.\n");
 	return 0.0;
+}
+
+void setvar(int varkey, double varval)
+{
+	variables[varkey - 'a'] = varval;
+	++status[varkey - 'a'];
+	printf("SETTING %c TO %g\n", varkey, varval);
 }
 
 double mathfunc(char s[])
@@ -165,7 +177,23 @@ int getop(char s[])
 		;
 	s[1] = '\0';
 	i = 0;
-	if (!isdigit(c) && !isalpha(c) && c != '.' && c != '-') return c;
+	if (!isdigit(c) && !isalpha(c) && c != '.' && c != '-' && c!='$') return c;
+	if (c == '$'){
+		if('a' <= (s[++i] = c = getch()) && c <= 'z'){
+			while (isdigit(s[++i] = c = getch()))
+				;
+			s[i] = '\0';
+			varkey = s[1];
+			s[0] = '0';
+			s[1] = '0';
+			varval = atof(s);
+			return SETVAR;
+		}
+		else {
+			ungetch(c);
+			return '$';
+		}
+	}
 	if (c == '-'){
 		if (isdigit(s[++i] = c = getch()))
 			while (isdigit(s[++i] = c = getch()))
