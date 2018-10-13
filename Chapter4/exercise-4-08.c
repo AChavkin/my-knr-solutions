@@ -38,11 +38,6 @@ int main()
 	double op2;
 	char s[MAXOP];
 
-	/*test for this exercise*/
-
-	ungetch('a');
-	ungetch(getch());
-
 	for (type = 0; type < NUMVARS; type++) status[type] = 0;
 
 	while((type = getop(s)) != EOF){
@@ -244,7 +239,6 @@ int getch(void)
 void ungetch(int c)
 {
 	bufp = c;
-	printf("%c", c);
 }
 
 /*void ungets (char s[])
