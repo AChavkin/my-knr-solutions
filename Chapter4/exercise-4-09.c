@@ -207,7 +207,7 @@ int getop(char s[])
 		while (isalpha(s[++i] = c = getch()))
 			;
 		s[i] = '\0';
-		if (c != EOF) ungetch(c);
+		ungetch(c);
 		if (strlen(s) == 1 && 'a' <= s[0] && s[0] <= 'z') return GETVAR;
 		return ALPHA;
 
@@ -219,36 +219,32 @@ int getop(char s[])
 		while (isdigit(s[++i] = c = getch()))
 			;
 	s[i] = '\0';
-	if (c != EOF) ungetch(c);
+	ungetch(c);
 	return NUMBER;
 }
 
+char buf[BUFSIZE];
 int bufp = 0;
 
 int getch(void)
 {
-	int temp;
-	if (bufp){
-		temp = bufp;
-		bufp = 0;
-		return temp;
-	}
-	return getchar();
+	return (bufp > 0) ? buf[--bufp] : getchar();
 }
 
 void ungetch(int c)
 {
-	bufp = c;
+	if (bufp >= BUFSIZE) printf("ungetch: too many characters\n");
+	else if (c != EOF) buf[bufp++] = c;
 }
 
-/*void ungets (char s[])
+void ungets (char s[])
 {
 	int i = 0;
 
-	ungets should do its own buf check so that
-	partial lines of input aren't fragmented
+	/* ungets should do its own buf check so that partial lines 
+	of input aren't fragmented */
 	if (bufp + strlen(s) >= BUFSIZE) printf("ungets: too many characters\n");
 	else{
 		for (i=0; i<strlen(s); ++i) ungetch(s[i]);
 	}
-}*/
+}

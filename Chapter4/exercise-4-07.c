@@ -241,7 +241,8 @@ void ungets (char s[])
 {
 	int i = 0;
 
-	/* ungets should do its own buf check so that partial lines of input aren't fragmented */
+	/* ungets should do its own buf check so that partial lines 
+	of input aren't fragmented */
 	if (bufp + strlen(s) >= BUFSIZE) printf("ungets: too many characters\n");
 	else{
 		for (i=0; i<strlen(s); ++i) ungetch(s[i]);
