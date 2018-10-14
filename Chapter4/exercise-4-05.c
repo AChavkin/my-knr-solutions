@@ -21,10 +21,11 @@ void clear(void);
 int getch(void);
 void ungetch(int c);
 
+double op2;
+
 int main()
 {
 	int type;
-	double op2;
 	char s[MAXOP];
 
 	while((type = getop(s)) != EOF){
@@ -49,9 +50,6 @@ int main()
 
 double mathfunc(char s[])
 {
-
-	double op2;
-
 	if (strcmp(s, "sin") == 0) return sin(pop());
 	else if (strcmp(s, "asin") == 0) return asin(pop());
 	else if (strcmp(s, "cos") == 0) return cos(pop());

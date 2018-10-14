@@ -26,6 +26,7 @@ void ungetch(int c);
 double getvar(int c);
 void setvar(int varkey, double varval);
 
+double op2;
 double variables[NUMVARS];
 int status[NUMVARS];
 int varkey = 0;
@@ -35,7 +36,6 @@ double recent = 0.0;
 int main()
 {
 	int type;
-	double op2;
 	char s[MAXOP];
 
 	for (type = 0; type < NUMVARS; type++) status[type] = 0;
@@ -78,9 +78,6 @@ void setvar(int varkey, double varval)
 
 double mathfunc(char s[])
 {
-
-	double op2;
-
 	if (strcmp(s, "sin") == 0) return sin(pop());
 	else if (strcmp(s, "asin") == 0) return asin(pop());
 	else if (strcmp(s, "cos") == 0) return cos(pop());
@@ -171,7 +168,6 @@ void clear(void)
 int getop(char s[])
 {
 	int i, c;
-	double num;
 
 	while ((s[0] = c = getch()) == ' ' || c == '\t')
 		;
