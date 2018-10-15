@@ -45,8 +45,10 @@ void itoa(int n, char s[])
 void reverse(char s[])
 {
 	int c;
-	static int j = 7;
+	static int j = 0;
 	static int i = 0;
+
+	if (j == 0) j = strlen(s) - 1;
 	
 	c = s[i];
 	s[i++] = s[j];
