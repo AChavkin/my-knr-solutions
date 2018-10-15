@@ -31,14 +31,12 @@ void itoa(int n, char s[])
 	s[i++] = abs(n % 10) + '0';
 	if (n /= 10) {
 		itoa(n, s);
-		--i;
 	}
 	else {
 		if (sign < 0) s[i++] = '-';
 		s[i] = '\0';
 		reverse(s);
-		--i;
-		--i;
+		i = 0;
 	}
 }
 

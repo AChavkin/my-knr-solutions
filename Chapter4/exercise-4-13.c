@@ -31,22 +31,20 @@ void itoa(int n, char s[])
 	s[i++] = abs(n % 10) + '0';
 	if (n /= 10) {
 		itoa(n, s);
-		--i;
 	}
 	else {
 		if (sign < 0) s[i++] = '-';
 		s[i] = '\0';
 		reverse(s);
-		--i;
-		--i;
+		i = 0;
 	}
 }
 
 void reverse(char s[])
 {
 	int c;
-	static int j = 0;
 	static int i = 0;
+	static int j = 0;
 
 	if (j == 0) j = strlen(s) - 1;
 	
@@ -56,6 +54,6 @@ void reverse(char s[])
 	if (i < j) {
 		reverse(s);
 	}
-	j++;
 	i--;
+	j++;
 }
