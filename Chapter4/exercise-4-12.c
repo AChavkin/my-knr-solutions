@@ -14,6 +14,10 @@ int main()
 	char test[SIZE];
 	itoa(-2134567, test);
 	printf("%s\n", test);
+	itoa(-2134567, test);
+	printf("%s\n", test);
+	itoa(-2134567, test);
+	printf("%s\n", test);
 	return 0;
 }
 
@@ -25,11 +29,16 @@ void itoa(int n, char s[])
 	sign = n;
 	
 	s[i++] = abs(n % 10) + '0';
-	if (n /= 10) itoa(n, s);
+	if (n /= 10) {
+		itoa(n, s);
+		--i;
+	}
 	else {
 		if (sign < 0) s[i++] = '-';
 		s[i] = '\0';
 		reverse(s);
+		--i;
+		--i;
 	}
 }
 
