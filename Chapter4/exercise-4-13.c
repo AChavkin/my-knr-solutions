@@ -49,10 +49,8 @@ void reverse(char s[])
 	static int i = 0;
 	
 	c = s[i];
-	s[i] = s[j];
-	s[j] = c;
-	i++;
-	j--;
+	s[i++] = s[j];
+	s[j--] = c;
 	if (i < j) {
 		reverse(s);
 	}
