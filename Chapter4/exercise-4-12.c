@@ -20,8 +20,7 @@ int main()
 void itoa(int n, char s[])
 {	
 	static int i = 0;
-	printf("LEN %d\n STR: %s\n N: %d\n", i, s, n);
-	int sign, mod;
+	int sign;
 
 	sign = n;
 	
