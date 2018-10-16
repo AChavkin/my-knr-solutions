@@ -23,6 +23,7 @@ void swap(void);
 void clear(void);
 int getch(void);
 void ungetch(int c);
+void ungets (char s[]);
 double getvar(int c);
 void setvar(int varkey, double varval);
 
