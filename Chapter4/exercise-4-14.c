@@ -1,9 +1,7 @@
 #include <stdio.h>
 
-/* I used an if so that I could re-declare z as different
-types/ different namespace if the macro is used multiple 
-times within the same block */
-#define swap(t, x, y) if (1) {t z = x; x = y; y = z;}
+/* Braces used to create block with new namespace for z (diff types) */
+#define swap(t, x, y) {t z = x; x = y; y = z;}
 
 int main()
 {
