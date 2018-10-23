@@ -28,8 +28,10 @@ int getint(int *pn)
 	the sign to the digit because spaces are skipped */
 	static int solo = 0;
 
-	if (solo) return 0;
-
+	if (solo) {
+		solo = 0;
+		return 0;
+	}
 	while (isspace(c=getch()))
 		;
 	if (!isdigit(c) && c != EOF && c != '+' && c != '-'){
