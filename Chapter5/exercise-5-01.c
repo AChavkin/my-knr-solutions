@@ -22,6 +22,13 @@ int main()
 int getint(int *pn)
 {
 	int c, d, sign;
+	/* We need a mechanism to track a solo - or + between calls
+	to still have the proper buffer ordering in ungetch() for
+	any other function that wants to use it, and not just move
+	the sign to the digit because spaces are skipped */
+	static int solo = 0;
+
+	if (solo) return 0;
 
 	while (isspace(c=getch()))
 		;
@@ -33,8 +40,9 @@ int getint(int *pn)
 	if (c == '+' || c == '-'){
 		d = c;
 		if (!isdigit(c=getch())){
-			ungetch(c);
 			ungetch(d);
+			ungetch(c);
+			++solo;
 			return 0;
 		}
 	}
