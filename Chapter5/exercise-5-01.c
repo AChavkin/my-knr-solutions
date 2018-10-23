@@ -11,11 +11,11 @@ int getint(int *pn);
 int main()
 {
 	int n, a[SIZE];
+	char b;
 
 	for (n = 0; n < SIZE && getint(&a[n]) != EOF; n++)
 		;
 	for (n = 0; n < SIZE; n++) printf("%d\n", a[n]);
-
 	return 0;
 }
 
@@ -33,7 +33,8 @@ int getint(int *pn)
 	if (c == '+' || c == '-'){
 		d = c;
 		if (!isdigit(c=getch())){
-			ungetch('a');
+			ungetch(c);
+			ungetch(d);
 			return 0;
 		}
 	}
