@@ -10,9 +10,9 @@ int getint(int *pn);
 
 int main()
 {
-	int c, n, res, a[SIZE];
+	int n, a[SIZE];
 
-	for (n = 0; n < SIZE && (res=getint(&a[n])) != EOF; n++)
+	for (n = 0; n < SIZE && getint(&a[n]) != EOF; n++)
 		;
 	for (n = 0; n < SIZE; n++) printf("%d\n", a[n]);
 
