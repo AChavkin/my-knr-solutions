@@ -16,6 +16,6 @@ int main()
 
 void mystrcat(char *s, char *t)
 {
-	while(*s != '\0') s++;
-	while((*(s++) = *(t++)) != '\0') ;
+	while(*s) s++;
+	while((*s++ = *t++)) ;
 }
