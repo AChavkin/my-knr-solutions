@@ -23,6 +23,5 @@ int strend(char *s, char *t)
 	}
 	while(*s) s++;
 	for(; (len>0 && (*--s == *--t)); len--) ;
-	if (len) return 0;
-	return 1;
+	return (len ? 0 : 1);
 }
