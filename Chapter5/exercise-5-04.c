@@ -16,7 +16,7 @@ int main()
 
 int strend(char *s, char *t)
 {
-	int len = 0;
+	char len = 0;
 	while(*t){
 		t++;
 		len++;
