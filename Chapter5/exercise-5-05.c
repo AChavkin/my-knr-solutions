@@ -20,7 +20,7 @@ int main()
 	printf("%s\n", mystrncpy(u, v, 10));
 	printf("%d\n", mystrncmp(w, x, 5));
 	printf("%d\n", mystrncmp(w, x, 6));
-	printf("%d\n", mystrncmp(w, y, 5));
+	printf("%d\n", mystrncmp(w, y, 10));
 	printf("%d\n", mystrncmp(w, z, 5));
 	return 0;
 }
