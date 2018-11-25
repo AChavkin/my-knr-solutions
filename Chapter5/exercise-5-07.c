@@ -51,7 +51,10 @@ int readlines(char *lineptr[], int maxlines, char *store)
 	char *p, line[MAXLEN];
 
 	nlines = 0;
-	p = strlen(store) + store;
+	p = strlen(store) + &store[0]; /* Use strlen to find the
+									address of the first empty
+									character position in the
+									storage array */
 
 	while ((len = my_getline(line, MAXLEN)) > 0){
 		if (nlines >= maxlines || (strlen(store) + len) > STORESIZE)
