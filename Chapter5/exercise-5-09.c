@@ -32,12 +32,12 @@ int day_of_year(int year, int month, int day)
 
 	leap = (year%4 == 0 && year%100 != 0) || year%400 == 0;
 
-	if (day > (*(daytab+leap))[month]){ /* Check that day isn't out of bounds for month */
+	if (day > *((*(daytab+leap))+month)){ /* Check that day isn't out of bounds for month */
 		printf("Error, day %d out of bounds for month %d in %d\n", day, month, year);
 		return -1;
 	}
 	for(i=1; i < month; i++) 
-		day += (*(daytab+leap))[i];
+		day += *((*(daytab+leap))+i);
 	return day;
 }
 
@@ -53,8 +53,8 @@ void month_day(int year, int yearday, int *pmonth, int *pday)
 		printf("Error, day %d not valid for year %d\n", yearday, year);
 		return;
 	}
-	for(i=1; yearday > (*(daytab+leap))[i]; i++) 
-		yearday -= (*(daytab+leap))[i];
+	for(i=1; yearday > *((*(daytab+leap))+i); i++) 
+		yearday -= *((*(daytab+leap))+i);
 	*pmonth = i;
 	*pday = yearday;
 }
