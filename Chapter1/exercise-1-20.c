@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-#define TABSTOP 5
+#define TABSTOP 8
 
 int main(void)
 {
