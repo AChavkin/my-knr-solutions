@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define DEFAULT_TAB 8
+
 int main(int argc, char *argv[])
 {
 	char c;
@@ -15,7 +17,7 @@ int main(int argc, char *argv[])
 			stop = argc-1; /* start at *(argv+1) again for each new line*/
 		}
 		else if (c == '\t'){
-			(argc == 1) ? tabstop = 8 : (tabstop = atoi(*(argv+(argc-stop))));
+			(argc == 1) ? tabstop = DEFAULT_TAB : (tabstop = atoi(*(argv+(argc-stop))));
 			i = counter % tabstop;
 			while (i++ != tabstop){
 				putchar(' ');
